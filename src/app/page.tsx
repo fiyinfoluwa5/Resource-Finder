@@ -1,7 +1,27 @@
-import Image from 'next/image'
+import React from 'react';
 
-export default function Home() {
+
+export default function ResourceFinder() {
   return (
-    <main><h1>Hello world</h1></main>
+    <div className="custom-container">
+      <h1 className="head-text"> Resource Finder</h1>
+
+      <div className="search-bar">
+        <input 
+      type="text"
+      placeholder="Ask anything...."
+      className="search-input"
+      />
+       <button className="search-button">Search</button>
+        
+      </div>
+      
+
+
+
+      
+
+
+    </div>
   )
 }
