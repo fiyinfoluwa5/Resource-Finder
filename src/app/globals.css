@@ -88,6 +88,11 @@ body {
   .search-button {
     width: auto;
   }
+   .result-row {
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .result-list {
