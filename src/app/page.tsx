@@ -26,20 +26,20 @@ export default function ResourceFinder() {
     setTimeout(() => {
       const dummyData: Resource[] = [
         {
-          title: `${searchQuery} PDF Guide`,
-          description: "A beginner's guide in PDF format.",
+          title: `${searchQuery}.pdf`,
+          description: "PDF Document",
           url: "/dummy/sample.pdf",
           type: "PDF",
         },
         {
-          title: `${searchQuery} PowerPoint Slides`,
-          description: "Presentation slides for quick understanding.",
+          title: `${searchQuery}.pptx`,
+          description: "Powerpoint Presentation",
           url: "/dummy/sample.pptx",
           type: "PowerPoint",
         },
         {
-          title: `${searchQuery} Video Tutorial`,
-          description: "A YouTube video tutorial.",
+          title: `${searchQuery}.Mp4`,
+          description: "Video series",
           url: "https://example.com/tutorial-video",
           type: "Video",
         },
@@ -57,11 +57,11 @@ export default function ResourceFinder() {
   const getIcon = (type?: string) => {
     switch (type?.toLowerCase()) {
       case "pdf":
-        return <FaFilePdf style={{ color: "#e3342f", marginRight: "0.5rem" }} />;
+        return <FaFilePdf style={{ fontSize: "40px", color: "#e3342f", marginRight: "0.5rem" }} />;
       case "powerpoint":
-        return <FaFilePowerpoint style={{ color: "#d97706", marginRight: "0.5rem" }} />;
+        return <FaFilePowerpoint style={{ fontSize: "40px", color: "#d97706", marginRight: "0.5rem" }} />;
       case "video":
-        return <FaYoutube style={{ color: "#ff0000", marginRight: "0.5rem" }} />;
+        return <FaYoutube style={{ fontSize: "40px", color: "#ff0000", marginRight: "0.5rem" }} />;
       default:
         return null;
     }
@@ -112,9 +112,19 @@ export default function ResourceFinder() {
                   </div>
                   <p className="resource-description">{resource.description}</p>
                   <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                    Visit Resource <ExternalLink className="external-link-icon" />
+                    View Resource <ExternalLink className="external-link-icon" />
                   </a>
-                </div>
+                {resource.type?.toLowerCase() === "pdf" || resource.type?.toLowerCase() === "powerpoint" ? (
+        <a href={resource.url} download>
+          <button className="resource-button download-button">Download</button>
+        </a>
+      ) : resource.type?.toLowerCase() === "video" ? (
+        <a href={resource.url} target="_blank" rel="noopener noreferrer">
+          <button className="resource-button watch-button">Watch Video</button>
+        </a>
+      ) : null}
+             </div>
+               
               ))}
             </div>
           ) : !isLoading ? (
